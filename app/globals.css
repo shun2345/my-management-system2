@@ -2,6 +2,8 @@
 @import 'tw-animate-css';
 @import 'shadcn/tailwind.css';
 
+@plugin '@tailwindcss/typography';
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -138,5 +140,33 @@ body {
     font-weight: 500;
     line-height: 1.4;
     letter-spacing: 0.02em;
+  }
+
+  /* prose (記事本文) カスタマイズ */
+  .prose {
+    line-height: 1.9;
+    letter-spacing: 0.02em;
+  }
+  .prose h2 {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.4em;
+    margin-top: 2.5em;
+  }
+  .prose h3 {
+    margin-top: 2em;
+  }
+  .prose blockquote {
+    border-left-color: var(--primary);
+    background-color: color-mix(in oklch, var(--muted) 50%, transparent);
+    padding: 0.75em 1em;
+    border-radius: 0 0.375rem 0.375rem 0;
+  }
+  .prose a {
+    color: var(--primary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .prose a:hover {
+    color: color-mix(in oklch, var(--primary) 80%, black);
   }
 }

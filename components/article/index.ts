@@ -1,2 +1,7 @@
 export { PostCard } from './PostCard'
 export { PostList } from './PostList'
+export { PostHeader } from './PostHeader'
+export { AuthorBox } from './AuthorBox'
+export { TableOfContents } from './TableOfContents'
+export { SourceList } from './SourceList'
+export { RelatedPosts } from './RelatedPosts'

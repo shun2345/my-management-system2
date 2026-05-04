@@ -1,4 +1,5 @@
 import { defineCollection, defineConfig, s } from "velite";
+import rehypeSlug from "rehype-slug";
 
 const posts = defineCollection({
   name: "Post",
@@ -37,6 +38,9 @@ export default defineConfig({
     clean: true,
   },
   collections: { posts },
+  mdx: {
+    rehypePlugins: [rehypeSlug],
+  },
   prepare: ({ posts }) => {
     const invalid = posts.filter((post) => post.sources.length === 0);
     if (invalid.length > 0) {
