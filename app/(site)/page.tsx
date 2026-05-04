@@ -1,13 +1,20 @@
-import { Button } from '@/components/ui/button';
+import type { Metadata } from 'next'
+import { Button } from '@/components/ui/button'
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Separator } from '@/components/ui/separator';
+} from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
+import { Separator } from '@/components/ui/separator'
+import { SITE_NAME, SITE_DESCRIPTION } from '@/lib/constants'
+
+export const metadata: Metadata = {
+  title: { absolute: SITE_NAME },
+  description: SITE_DESCRIPTION,
+}
 
 export default function Home() {
   return (
@@ -78,5 +85,5 @@ export default function Home() {
         </section>
       </div>
     </div>
-  );
+  )
 }
