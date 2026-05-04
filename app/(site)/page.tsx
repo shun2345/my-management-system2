@@ -12,7 +12,7 @@ import { Separator } from '@/components/ui/separator';
 export default function Home() {
   return (
     <div className="mx-auto max-w-2xl px-4 py-12">
-      <main className="flex flex-col gap-8">
+      <div className="flex flex-col gap-8">
         <section className="text-center">
           <h1>介護とお金の制度ガイド</h1>
           <p className="mt-4 text-muted-foreground">
@@ -76,7 +76,7 @@ export default function Home() {
             <Button variant="ghost">もっと読む</Button>
           </div>
         </section>
-      </main>
+      </div>
     </div>
   );
 }
