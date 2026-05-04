@@ -1,0 +1,45 @@
+<svg viewBox="0 0 720 360" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景: オフホワイト -->
+  <rect width="720" height="360" fill="#f5f1e8"/>
+
+  <!-- 縦書き枠線(書籍の背表紙風、薄い罫線) -->
+  <line x1="333" y1="50" x2="333" y2="305" stroke="#1a1a1a" stroke-width="0.6" opacity="0.3"/>
+  <line x1="343" y1="50" x2="343" y2="305" stroke="#1a1a1a" stroke-width="0.6" opacity="0.3"/>
+
+  <!-- 縦組みタイトル: 実家のしらべ -->
+  <g font-family="'Yu Mincho', 'Hiragino Mincho ProN', 'MS PMincho', serif"
+     font-size="42" font-weight="700" fill="#1a1a1a" text-anchor="middle">
+    <text x="375" y="80">実</text>
+    <text x="375" y="125">家</text>
+    <text x="375" y="170">の</text>
+    <text x="375" y="215">し</text>
+    <text x="375" y="260">ら</text>
+    <text x="375" y="305">べ</text>
+  </g>
+
+  <!-- 落款(朱の印) -->
+  <g transform="translate(425, 75)">
+    <rect width="44" height="44" fill="#a83030" rx="2"/>
+    <text x="22" y="33" text-anchor="middle"
+          font-family="'Yu Mincho', 'Hiragino Mincho ProN', serif"
+          font-size="24" fill="#f5f1e8" font-weight="700">栞</text>
+  </g>
+
+  <!-- 副題(縦組み、左側) -->
+  <g font-family="'Yu Mincho', 'Hiragino Mincho ProN', serif"
+     font-size="14" fill="#1a1a1a" opacity="0.6" text-anchor="middle">
+    <text x="295" y="95">親</text>
+    <text x="295" y="115">と</text>
+    <text x="295" y="135">家</text>
+    <text x="295" y="155">族</text>
+    <text x="295" y="175">の</text>
+    <text x="295" y="195">備</text>
+    <text x="295" y="215">え</text>
+    <text x="295" y="235">帖</text>
+  </g>
+
+  <!-- 英字ローマ字(底部) -->
+  <text x="375" y="335" text-anchor="middle"
+        font-family="'Georgia', serif" font-size="11" letter-spacing="6"
+        fill="#1a1a1a" opacity="0.55">JIKKA  NO  SHIRABE</text>
+</svg>

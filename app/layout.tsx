@@ -1,18 +1,19 @@
-import type { Metadata } from 'next';
-import { Geist, Geist_Mono, Noto_Sans_JP } from 'next/font/google';
-import { Header } from '@/components/layout/Header';
-import { Footer } from '@/components/layout/Footer';
-import './globals.css';
+import type { Metadata } from 'next'
+import { Geist, Geist_Mono, Noto_Sans_JP } from 'next/font/google'
+import { Header } from '@/components/layout/Header'
+import { Footer } from '@/components/layout/Footer'
+import { BASE_URL, SITE_NAME, SITE_DESCRIPTION } from '@/lib/constants'
+import './globals.css'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
   subsets: ['latin'],
-});
+})
 
 const geistMono = Geist_Mono({
   variable: '--font-geist-mono',
   subsets: ['latin'],
-});
+})
 
 const notoSansJP = Noto_Sans_JP({
   variable: '--font-noto-sans-jp',
@@ -20,21 +21,29 @@ const notoSansJP = Noto_Sans_JP({
   weight: ['400', '500', '700'],
   display: 'swap',
   preload: false,
-});
+})
 
 export const metadata: Metadata = {
+  metadataBase: new URL(BASE_URL),
   title: {
-    default: '介護とお金の制度ガイド',
-    template: '%s | 介護とお金の制度ガイド',
+    default: SITE_NAME,
+    template: `%s | ${SITE_NAME}`,
   },
-  description:
-    '親の介護・相続・終活・家計に関する公的制度と一般情報をわかりやすく解説',
-};
+  description: SITE_DESCRIPTION,
+  openGraph: {
+    siteName: SITE_NAME,
+    locale: 'ja_JP',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+  },
+}
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
   return (
     <html
@@ -55,5 +64,5 @@ export default function RootLayout({
         <Footer />
       </body>
     </html>
-  );
+  )
 }

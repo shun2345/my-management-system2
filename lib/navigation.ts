@@ -1,4 +1,4 @@
-export const SITE_NAME = '介護とお金の制度ガイド'
+export { SITE_NAME } from './constants'
 
 export const CATEGORIES = [
   { label: '介護', href: '/category/kaigo' },

@@ -1,11 +1,13 @@
+import { BASE_URL } from './constants'
+
 type ArticleJsonLdInput = {
-  title: string;
-  description: string;
-  publishedAt: string;
-  updatedAt: string;
-  slug: string;
-  author: string;
-};
+  title: string
+  description: string
+  publishedAt: string
+  updatedAt: string
+  slug: string
+  author: string
+}
 
 export function generateArticleJsonLd({
   title,
@@ -22,10 +24,10 @@ export function generateArticleJsonLd({
     description,
     datePublished: publishedAt,
     dateModified: updatedAt,
-    url: `https://example.com/posts/${slug}`,
+    url: `${BASE_URL}/posts/${slug}`,
     author: {
       '@type': 'Person',
       name: author,
     },
-  };
+  }
 }

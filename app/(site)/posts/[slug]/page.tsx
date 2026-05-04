@@ -1,21 +1,43 @@
-import { notFound } from "next/navigation";
-import { posts } from "@/.velite";
-import { MDXContent } from "@/components/mdx-content";
+import type { Metadata } from 'next'
+import { notFound } from 'next/navigation'
+import { posts } from '@/.velite'
+import { MDXContent } from '@/components/mdx-content'
+import { generateSeoMetadata } from '@/lib/seo'
+import { DEFAULT_AUTHOR } from '@/lib/constants'
 
 type Props = {
-  params: Promise<{ slug: string }>;
-};
+  params: Promise<{ slug: string }>
+}
 
 export function generateStaticParams() {
-  return posts.map((post) => ({ slug: post.slug }));
+  return posts.map((post) => ({ slug: post.slug }))
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params
+  const post = posts.find((p) => p.slug === slug)
+
+  if (!post) {
+    return {}
+  }
+
+  return generateSeoMetadata({
+    title: post.title,
+    description: post.description,
+    path: `/posts/${post.slug}`,
+    ogType: 'article',
+    publishedAt: post.publishedAt,
+    updatedAt: post.updatedAt,
+    author: post.author ?? DEFAULT_AUTHOR,
+  })
 }
 
 export default async function PostPage({ params }: Props) {
-  const { slug } = await params;
-  const post = posts.find((p) => p.slug === slug);
+  const { slug } = await params
+  const post = posts.find((p) => p.slug === slug)
 
   if (!post) {
-    notFound();
+    notFound()
   }
 
   return (
@@ -63,5 +85,5 @@ export default async function PostPage({ params }: Props) {
         </ul>
       </footer>
     </article>
-  );
+  )
 }
