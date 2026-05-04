@@ -507,3 +507,11 @@ Claude Code が判断に迷う場面では、次の優先順位で判断する�
 5. 制作効率
 
 上位の項目が下位の項目より常に優先される。トラフィック獲得のために法律やASP規約に反することは絶対にしない。
+
+## イシュー作業の規約
+- 必ず plan mode で計画を立ててから実装に入る
+- 1 イシュー = 1 ブランチ = 1 PR
+- ブランチ名: `<type>/<issue-number>-<slug>` (例: feat/123-oauth-login)
+- コミットメッセージ末尾に `Refs #<issue-number>` を入れる
+- PR タイトルは Conventional Commits 形式
+- PR 本文に `Closes #<issue-number>` を入れて自動クローズ
