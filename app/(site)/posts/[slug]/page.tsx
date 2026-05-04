@@ -1,9 +1,24 @@
+import fs from 'node:fs'
+import path from 'node:path'
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import { notFound } from 'next/navigation'
+import { ChevronRight } from 'lucide-react'
 import { posts } from '@/.velite'
 import { MDXContent } from '@/components/mdx-content'
+import {
+  PostHeader,
+  AuthorBox,
+  TableOfContents,
+  SourceList,
+  RelatedPosts,
+} from '@/components/article'
 import { generateSeoMetadata } from '@/lib/seo'
+import { generateArticleJsonLd, generateBreadcrumbJsonLd } from '@/lib/jsonld'
 import { DEFAULT_AUTHOR } from '@/lib/constants'
+import { getCategoryHref } from '@/lib/navigation'
+import { extractToc } from '@/lib/toc'
+import { getRelatedPosts } from '@/lib/related-posts'
 
 type Props = {
   params: Promise<{ slug: string }>
@@ -40,50 +55,112 @@ export default async function PostPage({ params }: Props) {
     notFound()
   }
 
+  // MDXソースから目次を抽出
+  const mdxPath = path.join(process.cwd(), 'content', 'posts', `${slug}.mdx`)
+  let tocEntries: ReturnType<typeof extractToc> = []
+  try {
+    const rawContent = fs.readFileSync(mdxPath, 'utf-8')
+    tocEntries = extractToc(rawContent)
+  } catch {
+    // ファイルが読めない場合はTOCなしで続行
+  }
+
+  // 関連記事を取得
+  const relatedPosts = getRelatedPosts(post, posts)
+
+  // JSON-LD構造化データ
+  const articleJsonLd = generateArticleJsonLd({
+    title: post.title,
+    description: post.description,
+    publishedAt: post.publishedAt,
+    updatedAt: post.updatedAt,
+    slug: post.slug,
+    author: post.author ?? DEFAULT_AUTHOR,
+  })
+
+  const breadcrumbItems = [
+    { name: 'ホーム', href: '/' },
+    { name: post.category, href: getCategoryHref(post.category) },
+    { name: post.title, href: `/posts/${post.slug}` },
+  ]
+  const breadcrumbJsonLd = generateBreadcrumbJsonLd(breadcrumbItems)
+
   return (
-    <article className="mx-auto max-w-3xl px-4 py-12">
-      <header className="mb-8">
-        <h1 className="text-2xl font-semibold">{post.title}</h1>
-        <p className="mt-2 text-sm text-foreground/60">
-          公開日: {post.publishedAt} / 更新日: {post.updatedAt}
-        </p>
-        <div className="mt-2 flex gap-2">
-          <span className="rounded bg-foreground/10 px-2 py-0.5 text-xs">
-            {post.category}
-          </span>
-          {post.tags.map((tag) => (
-            <span
-              key={tag}
-              className="rounded bg-foreground/5 px-2 py-0.5 text-xs"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
-      </header>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(articleJsonLd),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbJsonLd),
+        }}
+      />
 
-      <div className="prose prose-neutral max-w-none">
-        <MDXContent code={post.body} />
-      </div>
-
-      <footer className="mt-12 border-t pt-6">
-        <h2 className="text-lg font-semibold">出典</h2>
-        <ul className="mt-2 space-y-1 text-sm text-foreground/70">
-          {post.sources.map((source) => (
-            <li key={source.url}>
-              <a
-                href={source.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline"
-              >
-                {source.title}
-              </a>
-              （{source.accessedAt} アクセス）
+      <div className="mx-auto max-w-4xl px-4 py-12">
+        {/* パンくずリスト */}
+        <nav aria-label="パンくずリスト" className="mb-6">
+          <ol className="flex flex-wrap items-center gap-1 text-sm text-muted-foreground">
+            <li>
+              <Link href="/" className="hover:text-primary">
+                ホーム
+              </Link>
             </li>
-          ))}
-        </ul>
-      </footer>
-    </article>
+            <li>
+              <ChevronRight className="h-3 w-3" aria-hidden="true" />
+            </li>
+            <li>
+              <Link
+                href={getCategoryHref(post.category)}
+                className="hover:text-primary"
+              >
+                {post.category}
+              </Link>
+            </li>
+            <li>
+              <ChevronRight className="h-3 w-3" aria-hidden="true" />
+            </li>
+            <li className="truncate text-foreground" aria-current="page">
+              {post.title}
+            </li>
+          </ol>
+        </nav>
+
+        <article>
+          <PostHeader
+            title={post.title}
+            publishedAt={post.publishedAt}
+            updatedAt={post.updatedAt}
+            category={post.category}
+            tags={post.tags}
+            hasAffiliate={post.hasAffiliate}
+          />
+
+          {/* モバイル用TOC */}
+          <div className="lg:hidden">
+            <TableOfContents entries={tocEntries} />
+          </div>
+
+          {/* 本文 + デスクトップTOC */}
+          <div className="lg:grid lg:grid-cols-[1fr_220px] lg:gap-8">
+            <div className="prose prose-neutral max-w-none">
+              <MDXContent code={post.body} />
+            </div>
+
+            {/* デスクトップ用TOC sidebar */}
+            <div className="hidden lg:block">
+              <TableOfContents entries={tocEntries} />
+            </div>
+          </div>
+
+          <SourceList sources={post.sources} />
+          <AuthorBox author={post.author ?? DEFAULT_AUTHOR} />
+          <RelatedPosts posts={relatedPosts} />
+        </article>
+      </div>
+    </>
   )
 }
