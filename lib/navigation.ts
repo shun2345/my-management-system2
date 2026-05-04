@@ -7,6 +7,18 @@ export const CATEGORIES = [
   { label: 'お金', href: '/category/okane' },
 ] as const
 
+export const CATEGORY_SLUG_MAP: Record<string, string> = {
+  介護: 'kaigo',
+  相続: 'souzoku',
+  終活: 'shukatsu',
+  お金: 'okane',
+}
+
+export function getCategoryHref(category: string): string {
+  const slug = CATEGORY_SLUG_MAP[category]
+  return slug ? `/category/${slug}` : '/category'
+}
+
 export const FOOTER_LINKS = [
   { label: '運営者情報', href: '/about' },
   { label: 'プライバシーポリシー', href: '/privacy' },

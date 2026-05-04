@@ -1,14 +1,8 @@
 import type { Metadata } from 'next'
-import { Button } from '@/components/ui/button'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
-import { Separator } from '@/components/ui/separator'
+import Link from 'next/link'
+import { posts } from '@/.velite'
+import { PostList } from '@/components/article'
+import { CATEGORIES } from '@/lib/navigation'
 import { SITE_NAME, SITE_DESCRIPTION } from '@/lib/constants'
 
 export const metadata: Metadata = {
@@ -16,74 +10,95 @@ export const metadata: Metadata = {
   description: SITE_DESCRIPTION,
 }
 
+const CATEGORY_LABELS = ['介護', '相続', '終活', 'お金'] as const
+
+function getLatestPosts(count: number) {
+  return [...posts]
+    .sort(
+      (a, b) =>
+        new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+    )
+    .slice(0, count)
+}
+
+function getPostsByCategory(category: string, count: number) {
+  return [...posts]
+    .filter((p) => p.category === category)
+    .sort(
+      (a, b) =>
+        new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+    )
+    .slice(0, count)
+}
+
 export default function Home() {
+  const latestPosts = getLatestPosts(6)
+
   return (
-    <div className="mx-auto max-w-2xl px-4 py-12">
-      <div className="flex flex-col gap-8">
-        <section className="text-center">
-          <h1>介護とお金の制度ガイド</h1>
-          <p className="mt-4 text-muted-foreground">
-            親の介護・相続・終活・家計に関する公的制度をわかりやすく解説
-          </p>
-        </section>
+    <div className="mx-auto max-w-5xl px-4 py-12">
+      {/* Hero */}
+      <section className="py-8 text-center sm:py-12">
+        <h1>実家のしらべ</h1>
+        <p className="mt-2 text-sm text-muted-foreground">
+          親と家族の備え帖
+        </p>
+        <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
+          介護・相続・終活・お金を、公的制度で整理するメディアです。
+          厚労省や国税庁などの一次情報をもとに、制度の仕組みをわかりやすくお届けします。
+        </p>
+      </section>
 
-        <Separator />
+      {/* 新着記事 */}
+      <section className="mt-12 sm:mt-16">
+        <h2>新着記事</h2>
+        <div className="mt-4">
+          <PostList
+            posts={latestPosts}
+            layout="list"
+            emptyMessage="記事を準備中です"
+          />
+        </div>
+      </section>
 
-        <section className="flex flex-col gap-4">
-          <h2>カテゴリ</h2>
-          <div className="flex flex-wrap gap-2">
-            <Badge>介護</Badge>
-            <Badge variant="secondary">相続</Badge>
-            <Badge variant="outline">終活</Badge>
-            <Badge variant="secondary">お金</Badge>
-          </div>
-        </section>
+      {/* カテゴリ別セクション */}
+      {CATEGORY_LABELS.map((category) => {
+        const categoryPosts = getPostsByCategory(category, 4)
+        const categoryLink = CATEGORIES.find((c) => c.label === category)?.href
 
-        <Separator />
+        return (
+          <section key={category} className="mt-12 sm:mt-16">
+            <div className="flex items-center justify-between">
+              <h2>{category}の記事</h2>
+              {categoryLink && (
+                <Link
+                  href={categoryLink}
+                  className="text-sm text-primary hover:underline"
+                >
+                  一覧を見る
+                </Link>
+              )}
+            </div>
+            <div className="mt-4">
+              <PostList
+                posts={categoryPosts}
+                layout="grid"
+                compact
+                emptyMessage={`${category}の記事を準備中です`}
+              />
+            </div>
+          </section>
+        )
+      })}
 
-        <section className="flex flex-col gap-4">
-          <h2>新着記事</h2>
-          <Card>
-            <CardHeader>
-              <CardTitle>介護保険制度の基本</CardTitle>
-              <CardDescription>
-                40歳以上の方が加入する介護保険の仕組みを解説
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground">
-                介護保険制度は、介護が必要になった方を社会全体で支える仕組みです。
-              </p>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader>
-              <CardTitle>相続税の基礎控除</CardTitle>
-              <CardDescription>
-                相続税がかかるかどうかの目安となる基礎控除額について
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground">
-                基礎控除額は「3,000万円 + 600万円 x
-                法定相続人の数」で計算されます。
-              </p>
-            </CardContent>
-          </Card>
-        </section>
-
-        <Separator />
-
-        <section className="flex flex-col gap-4">
-          <h2>ボタンスタイル</h2>
-          <div className="flex flex-wrap gap-3">
-            <Button>詳しく見る</Button>
-            <Button variant="secondary">カテゴリ一覧</Button>
-            <Button variant="outline">お問い合わせ</Button>
-            <Button variant="ghost">もっと読む</Button>
-          </div>
-        </section>
-      </div>
+      {/* LINE登録CTA */}
+      <section className="mt-12 rounded-lg bg-primary px-6 py-8 text-center text-primary-foreground sm:mt-16">
+        <p className="text-lg font-bold">
+          親の介護お金準備チェックリスト30項目を無料配布中
+        </p>
+        <p className="mt-2 text-sm text-primary-foreground/80">
+          LINE登録で、介護・相続に備えるチェックリストをお届けします
+        </p>
+      </section>
     </div>
   )
 }
