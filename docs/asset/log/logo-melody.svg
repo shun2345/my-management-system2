@@ -1,0 +1,32 @@
+<svg viewBox="0 0 720 320" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景: クリーム -->
+  <rect width="720" height="320" fill="#f4eee0"/>
+
+  <!-- メインタイトル: 実家のしらべ(中央) -->
+  <text x="360" y="155" text-anchor="middle"
+        font-family="'Yu Mincho', 'Hiragino Mincho ProN', 'MS PMincho', serif"
+        font-size="62" font-weight="500" fill="#2c5b4a" letter-spacing="8">実家のしらべ</text>
+
+  <!-- 波線(メロディの暗喩) -->
+  <path d="M 180 195 Q 230 182, 280 195 T 380 195 T 480 195 T 540 195"
+        stroke="#2c5b4a" stroke-width="1.8" fill="none" opacity="0.55" stroke-linecap="round"/>
+
+  <!-- 波線終わりの音符 -->
+  <g transform="translate(540, 192)">
+    <ellipse cx="0" cy="0" rx="7" ry="5" fill="#2c5b4a" transform="rotate(-18)"/>
+    <line x1="6.5" y1="-1.5" x2="6.5" y2="-26" stroke="#2c5b4a" stroke-width="1.8" stroke-linecap="round"/>
+  </g>
+
+  <!-- 波線開始の小さな丸(対称) -->
+  <circle cx="180" cy="195" r="3" fill="#2c5b4a" opacity="0.55"/>
+
+  <!-- サブタイトル: ローマ字 -->
+  <text x="360" y="240" text-anchor="middle"
+        font-family="'Georgia', serif"
+        font-size="13" letter-spacing="7" fill="#2c5b4a" opacity="0.6">JIKKA  NO  SHIRABE</text>
+
+  <!-- ディスクリプター -->
+  <text x="360" y="268" text-anchor="middle"
+        font-family="'Yu Mincho', 'Hiragino Mincho ProN', serif"
+        font-size="13" letter-spacing="3" fill="#2c5b4a" opacity="0.65">親と家族の備え帖</text>
+</svg>

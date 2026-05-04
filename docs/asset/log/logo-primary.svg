@@ -1,0 +1,32 @@
+<svg viewBox="0 0 720 320" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景: 生成り -->
+  <rect width="720" height="320" fill="#f5ede0"/>
+
+  <!-- シンボル: 家の輪郭 + 栞リボン -->
+  <g transform="translate(90, 70)">
+    <!-- 家のシルエット(線画) -->
+    <path d="M 10 100 L 90 20 L 170 100 L 170 190 L 10 190 Z"
+          fill="none" stroke="#1a3a5c" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round"/>
+    <!-- 栞のリボン(屋根の付け根から垂れる) -->
+    <path d="M 70 60 L 110 60 L 110 165 L 90 150 L 70 165 Z"
+          fill="#c1492f"/>
+    <!-- 栞のハイライト(立体感) -->
+    <path d="M 70 60 L 78 60 L 78 158 L 70 152 Z"
+          fill="#a8351e" opacity="0.4"/>
+  </g>
+
+  <!-- 区切りの細線 -->
+  <line x1="300" y1="80" x2="300" y2="240" stroke="#1a3a5c" stroke-width="1" opacity="0.25"/>
+
+  <!-- メインタイトル: 実家のしらべ -->
+  <text x="335" y="175" font-family="'Yu Mincho', 'Hiragino Mincho ProN', 'MS PMincho', serif"
+        font-size="56" font-weight="600" fill="#1a3a5c" letter-spacing="2">実家のしらべ</text>
+
+  <!-- サブタイトル: ローマ字 -->
+  <text x="335" y="210" font-family="'Georgia', serif"
+        font-size="13" letter-spacing="6" fill="#1a3a5c" opacity="0.65">JIKKA  NO  SHIRABE</text>
+
+  <!-- ディスクリプター -->
+  <text x="335" y="240" font-family="'Yu Mincho', 'Hiragino Mincho ProN', serif"
+        font-size="13" letter-spacing="3" fill="#1a3a5c" opacity="0.7">親と家族の備え帖</text>
+</svg>
