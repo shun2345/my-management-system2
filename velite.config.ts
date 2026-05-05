@@ -24,6 +24,24 @@ const posts = defineCollection({
     hasAffiliate: s.boolean().default(false),
     disclaimer: s.boolean().default(true),
     author: s.string(),
+    faqItems: s
+      .array(
+        s.object({
+          question: s.string(),
+          answer: s.string(),
+        }),
+      )
+      .optional()
+      .default([]),
+    howToSteps: s
+      .array(
+        s.object({
+          name: s.string(),
+          text: s.string(),
+        }),
+      )
+      .optional()
+      .default([]),
     body: s.mdx(),
   }),
 });

@@ -14,7 +14,12 @@ import {
   RelatedPosts,
 } from '@/components/article'
 import { generateSeoMetadata } from '@/lib/seo'
-import { generateArticleJsonLd, generateBreadcrumbJsonLd } from '@/lib/jsonld'
+import {
+  generateArticleJsonLd,
+  generateBreadcrumbJsonLd,
+  generateFAQPageJsonLd,
+  generateHowToJsonLd,
+} from '@/lib/jsonld'
 import { BASE_URL, DEFAULT_AUTHOR } from '@/lib/constants'
 import { getCategoryHref } from '@/lib/navigation'
 import { extractToc } from '@/lib/toc'
@@ -87,6 +92,17 @@ export default async function PostPage({ params }: Props) {
   ]
   const breadcrumbJsonLd = generateBreadcrumbJsonLd(breadcrumbItems)
 
+  const faqJsonLd =
+    post.faqItems.length > 0 ? generateFAQPageJsonLd(post.faqItems) : null
+  const howToJsonLd =
+    post.howToSteps.length > 0
+      ? generateHowToJsonLd({
+          name: post.title,
+          description: post.description,
+          steps: post.howToSteps,
+        })
+      : null
+
   return (
     <>
       <script
@@ -101,6 +117,22 @@ export default async function PostPage({ params }: Props) {
           __html: JSON.stringify(breadcrumbJsonLd),
         }}
       />
+      {faqJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(faqJsonLd),
+          }}
+        />
+      )}
+      {howToJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(howToJsonLd),
+          }}
+        />
+      )}
 
       <div className="mx-auto max-w-[960px] px-4 py-12">
         {/* パンくずリスト */}

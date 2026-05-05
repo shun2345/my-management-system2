@@ -66,6 +66,32 @@ export function generateFAQPageJsonLd(items: FAQItem[]) {
   }
 }
 
+type HowToStep = {
+  name: string
+  text: string
+}
+
+type HowToJsonLdInput = {
+  name: string
+  description: string
+  steps: HowToStep[]
+}
+
+export function generateHowToJsonLd({ name, description, steps }: HowToJsonLdInput) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name,
+    description,
+    step: steps.map((s, i) => ({
+      '@type': 'HowToStep',
+      position: i + 1,
+      name: s.name,
+      text: s.text,
+    })),
+  }
+}
+
 type BreadcrumbItem = {
   name: string
   href: string
