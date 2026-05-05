@@ -50,7 +50,7 @@ export function ContactForm() {
   if (status === 'success') {
     return (
       <div className="flex flex-col items-center gap-3 rounded-lg border border-border bg-muted/50 px-6 py-10 text-center">
-        <CheckCircle className="size-10 text-green-600" />
+        <CheckCircle className="size-10 text-semantic-success" />
         <p className="text-lg font-medium">送信が完了しました</p>
         <p className="text-sm text-muted-foreground">
           お問い合わせいただきありがとうございます。内容を確認のうえ、ご連絡いたします。

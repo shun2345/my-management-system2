@@ -10,16 +10,16 @@ export function RelatedPosts({ posts }: RelatedPostsProps) {
   if (posts.length === 0) return null
 
   return (
-    <section className="mt-12 border-t pt-8">
-      <h2 className="text-lg font-semibold">関連記事</h2>
+    <section className="mt-12 border-t border-border pt-8">
+      <h2 className="font-heading text-lg font-semibold">関連記事</h2>
       <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {posts.map((post) => (
           <Link
             key={post.slug}
             href={`/posts/${post.slug}`}
-            className="group rounded-lg border bg-card p-4 transition-shadow hover:shadow-md"
+            className="group rounded-lg border border-border bg-card p-4 transition-all hover:shadow-md hover:border-brand-navy/20 dark:hover:border-primary/30"
           >
-            <p className="font-medium leading-snug group-hover:text-primary">
+            <p className="font-heading font-medium leading-snug group-hover:text-brand-navy dark:group-hover:text-primary">
               {post.title}
             </p>
             <div className="mt-2 flex items-center gap-2">

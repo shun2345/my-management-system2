@@ -21,10 +21,10 @@ function formatDate(isoDate: string): string {
 
 export function PostCard({ post, compact = false }: PostCardProps) {
   return (
-    <Card className="transition-shadow hover:shadow-md">
+    <Card className="transition-shadow hover:shadow-md hover:border-brand-navy/20 dark:hover:border-primary/30">
       <Link href={`/posts/${post.slug}`} className="block">
         <CardHeader>
-          <CardTitle>{post.title}</CardTitle>
+          <CardTitle className="font-heading">{post.title}</CardTitle>
           {!compact && (
             <CardDescription>{post.description}</CardDescription>
           )}

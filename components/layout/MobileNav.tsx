@@ -27,7 +27,9 @@ export function MobileNav() {
       </DrawerTrigger>
       <DrawerContent>
         <DrawerHeader className="flex flex-row items-center justify-between">
-          <DrawerTitle>{SITE_NAME}</DrawerTitle>
+          <DrawerTitle className="font-heading text-brand-navy dark:text-primary">
+            {SITE_NAME}
+          </DrawerTitle>
           <DrawerClose asChild>
             <Button variant="ghost" size="icon" aria-label="メニューを閉じる">
               <X className="size-5" />
@@ -43,7 +45,7 @@ export function MobileNav() {
               key={category.href}
               href={category.href}
               onClick={() => setOpen(false)}
-              className="py-3 text-base font-medium text-foreground transition-colors hover:text-primary"
+              className="py-3 text-base font-medium text-foreground transition-colors hover:text-brand-navy dark:hover:text-primary"
             >
               {category.label}
             </Link>

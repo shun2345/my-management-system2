@@ -1,18 +1,15 @@
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono, Noto_Sans_JP } from 'next/font/google'
+import { Inter, Noto_Sans_JP, Noto_Serif_JP, JetBrains_Mono } from 'next/font/google'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
+import { ThemeProvider } from '@/components/providers/ThemeProvider'
 import { BASE_URL, SITE_NAME, SITE_DESCRIPTION } from '@/lib/constants'
 import './globals.css'
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
+const inter = Inter({
+  variable: '--font-inter',
   subsets: ['latin'],
-})
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
+  display: 'swap',
 })
 
 const notoSansJP = Noto_Sans_JP({
@@ -21,6 +18,21 @@ const notoSansJP = Noto_Sans_JP({
   weight: ['400', '500', '700'],
   display: 'swap',
   preload: false,
+})
+
+const notoSerifJP = Noto_Serif_JP({
+  variable: '--font-noto-serif-jp',
+  subsets: ['latin'],
+  weight: ['600', '700'],
+  display: 'swap',
+  preload: false,
+})
+
+const jetbrainsMono = JetBrains_Mono({
+  variable: '--font-jetbrains-mono',
+  subsets: ['latin'],
+  weight: ['400', '500'],
+  display: 'swap',
 })
 
 export const metadata: Metadata = {
@@ -48,20 +60,23 @@ export default function RootLayout({
   return (
     <html
       lang="ja"
-      className={`${notoSansJP.variable} ${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      suppressHydrationWarning
+      className={`${notoSansJP.variable} ${notoSerifJP.variable} ${inter.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <a
-          href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-background focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:shadow-md"
-        >
-          メインコンテンツへスキップ
-        </a>
-        <Header />
-        <main id="main-content" className="flex-1">
-          {children}
-        </main>
-        <Footer />
+        <ThemeProvider>
+          <a
+            href="#main-content"
+            className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-background focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:shadow-md"
+          >
+            メインコンテンツへスキップ
+          </a>
+          <Header />
+          <main id="main-content" className="flex-1">
+            {children}
+          </main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   )

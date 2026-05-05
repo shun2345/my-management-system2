@@ -35,10 +35,10 @@ export default function Home() {
   const latestPosts = getLatestPosts(6)
 
   return (
-    <div className="mx-auto max-w-5xl px-4 py-12">
+    <div className="mx-auto max-w-[1120px] px-4 py-12">
       {/* Hero */}
       <section className="py-8 text-center sm:py-12">
-        <h1>実家のしらべ</h1>
+        <h1 className="font-heading">実家のしらべ</h1>
         <p className="mt-2 text-sm text-muted-foreground">
           親と家族の備え帖
         </p>
@@ -68,11 +68,11 @@ export default function Home() {
         return (
           <section key={category} className="mt-12 sm:mt-16">
             <div className="flex items-center justify-between">
-              <h2>{category}の記事</h2>
+              <h2 className="font-heading">{category}の記事</h2>
               {categoryLink && (
                 <Link
                   href={categoryLink}
-                  className="text-sm text-primary hover:underline"
+                  className="text-sm text-brand-navy dark:text-primary hover:underline"
                 >
                   一覧を見る
                 </Link>
@@ -91,11 +91,11 @@ export default function Home() {
       })}
 
       {/* LINE登録CTA */}
-      <section className="mt-12 rounded-lg bg-primary px-6 py-8 text-center text-primary-foreground sm:mt-16">
-        <p className="text-lg font-bold">
+      <section className="mt-12 rounded-xl bg-brand-navy dark:bg-primary/20 px-6 py-8 text-center text-brand-cream dark:text-foreground sm:mt-16">
+        <p className="font-heading text-lg font-bold">
           親の介護お金準備チェックリスト30項目を無料配布中
         </p>
-        <p className="mt-2 text-sm text-primary-foreground/80">
+        <p className="mt-2 text-sm text-brand-cream/80 dark:text-muted-foreground">
           LINE登録で、介護・相続に備えるチェックリストをお届けします
         </p>
       </section>

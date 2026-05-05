@@ -21,12 +21,12 @@ export default function DisclosurePage() {
         ]}
       />
 
-      <h1 className="mt-4 text-2xl font-semibold">広告についての表記</h1>
+      <h1 className="mt-4 font-heading text-2xl font-semibold">広告についての表記</h1>
 
       <div className="mt-8 space-y-10">
         {/* アフィリエイト広告について */}
         <section>
-          <h2 className="text-xl font-semibold">アフィリエイト広告について</h2>
+          <h2 className="font-heading text-xl font-semibold">アフィリエイト広告について</h2>
           <p className="mt-3 leading-relaxed text-foreground/80">
             {SITE_NAME}
             （以下「当サイト」）は、一部の記事においてアフィリエイト広告（成果報酬型広告）を掲載しています。
@@ -38,7 +38,7 @@ export default function DisclosurePage() {
 
         {/* 景品表示法に基づく表記 */}
         <section>
-          <h2 className="text-xl font-semibold">
+          <h2 className="font-heading text-xl font-semibold">
             景品表示法に基づく表記
           </h2>
           <p className="mt-3 leading-relaxed text-foreground/80">
@@ -48,7 +48,7 @@ export default function DisclosurePage() {
 
         {/* 広告の表示方法 */}
         <section>
-          <h2 className="text-xl font-semibold">広告の表示方法</h2>
+          <h2 className="font-heading text-xl font-semibold">広告の表示方法</h2>
           <p className="mt-3 leading-relaxed text-foreground/80">
             アフィリエイト広告を含む記事には、以下の方法で広告であることを明示しています。
           </p>
@@ -67,7 +67,7 @@ export default function DisclosurePage() {
 
         {/* コンテンツの独立性 */}
         <section>
-          <h2 className="text-xl font-semibold">コンテンツの独立性</h2>
+          <h2 className="font-heading text-xl font-semibold">コンテンツの独立性</h2>
           <p className="mt-3 leading-relaxed text-foreground/80">
             広告の有無にかかわらず、当サイトの記事は公的資料に基づいた客観的な情報提供を目的としています。広告収入が記事の内容や評価に影響を与えることはありません。
           </p>
@@ -78,7 +78,7 @@ export default function DisclosurePage() {
 
         {/* 免責事項 */}
         <section>
-          <h2 className="text-xl font-semibold">免責事項</h2>
+          <h2 className="font-heading text-xl font-semibold">免責事項</h2>
           <p className="mt-3 leading-relaxed text-foreground/80">
             当サイトの記事は情報提供を目的としており、個別の状況に応じた金融・税務・法律上の助言を行うものではありません。具体的なご判断が必要な場合は、各分野の専門家にご相談ください。
           </p>
@@ -89,7 +89,7 @@ export default function DisclosurePage() {
             広告表記に関するご質問は、
             <Link
               href="/contact"
-              className="text-primary underline underline-offset-4 hover:text-primary/80"
+              className="text-brand-navy dark:text-primary underline underline-offset-4 hover:opacity-80"
             >
               お問い合わせページ
             </Link>
