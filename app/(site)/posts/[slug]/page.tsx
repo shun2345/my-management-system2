@@ -15,7 +15,7 @@ import {
 } from '@/components/article'
 import { generateSeoMetadata } from '@/lib/seo'
 import { generateArticleJsonLd, generateBreadcrumbJsonLd } from '@/lib/jsonld'
-import { DEFAULT_AUTHOR } from '@/lib/constants'
+import { BASE_URL, DEFAULT_AUTHOR } from '@/lib/constants'
 import { getCategoryHref } from '@/lib/navigation'
 import { extractToc } from '@/lib/toc'
 import { getRelatedPosts } from '@/lib/related-posts'
@@ -76,6 +76,7 @@ export default async function PostPage({ params }: Props) {
     updatedAt: post.updatedAt,
     slug: post.slug,
     author: post.author ?? DEFAULT_AUTHOR,
+    image: `${BASE_URL}/api/og?title=${encodeURIComponent(post.title)}`,
   })
 
   const breadcrumbItems = [
