@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 400" width="480" height="400" role="img" aria-label="介護保険の自己負担割合の仕組み：所得に応じて1割から3割">
+  <title>介護保険の自己負担割合の仕組み</title>
+  <defs>
+    <style>
+      .bar-insurance { fill: #1a3a5c; }
+      .bar-self { fill: #c1492f; }
+      .bar-bg { fill: #e8e2d4; stroke: #1a3a5c; stroke-width: 1; rx: 4; }
+      .label { fill: #1a1a1a; font-family: sans-serif; font-size: 14px; font-weight: 700; }
+      .sub-label { fill: #6b6b6b; font-family: sans-serif; font-size: 12px; }
+      .pct-text { fill: #fff; font-family: sans-serif; font-size: 13px; font-weight: 700; }
+      .pct-text-dark { fill: #1a1a1a; font-family: sans-serif; font-size: 13px; font-weight: 700; }
+    </style>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="480" height="400" fill="#f5ede0" rx="16" />
+
+  <!-- タイトル -->
+  <text x="240" y="36" text-anchor="middle" font-family="sans-serif" font-size="17" font-weight="700" fill="#1a3a5c">自己負担割合のしくみ</text>
+  <text x="240" y="58" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#6b6b6b">所得に応じて負担割合が変わります</text>
+
+  <!-- 凡例 -->
+  <rect x="120" y="72" width="16" height="16" rx="2" fill="#c1492f" />
+  <text x="142" y="85" font-family="sans-serif" font-size="12" fill="#1a1a1a">自己負担</text>
+  <rect x="260" y="72" width="16" height="16" rx="2" fill="#1a3a5c" />
+  <text x="282" y="85" font-family="sans-serif" font-size="12" fill="#1a1a1a">保険給付</text>
+
+  <!-- 1割負担 -->
+  <text x="40" y="126" class="label">1割負担</text>
+  <text x="40" y="144" class="sub-label">多くの方が該当</text>
+
+  <rect x="40" y="156" width="400" height="40" class="bar-bg" />
+  <rect x="40" y="156" width="40" height="40" rx="4" class="bar-self" />
+  <rect x="80" y="156" width="360" height="40" rx="0" class="bar-insurance" />
+  <rect x="436" y="156" width="4" height="40" rx="4" fill="#1a3a5c" />
+  <text x="60" y="181" text-anchor="middle" class="pct-text">1割</text>
+  <text x="260" y="181" text-anchor="middle" class="pct-text">9割（保険給付）</text>
+
+  <!-- 2割負担 -->
+  <text x="40" y="230" class="label">2割負担</text>
+  <text x="40" y="248" class="sub-label">一定以上の所得がある方</text>
+
+  <rect x="40" y="260" width="400" height="40" class="bar-bg" />
+  <rect x="40" y="260" width="80" height="40" rx="4" class="bar-self" />
+  <rect x="120" y="260" width="320" height="40" rx="0" class="bar-insurance" />
+  <rect x="436" y="260" width="4" height="40" rx="4" fill="#1a3a5c" />
+  <text x="80" y="285" text-anchor="middle" class="pct-text">2割</text>
+  <text x="280" y="285" text-anchor="middle" class="pct-text">8割（保険給付）</text>
+
+  <!-- 3割負担 -->
+  <text x="40" y="334" class="label">3割負担</text>
+  <text x="40" y="352" class="sub-label">現役並みの所得がある方</text>
+
+  <rect x="40" y="364" width="400" height="40" class="bar-bg" />
+  <rect x="40" y="364" width="120" height="40" rx="4" class="bar-self" />
+  <rect x="160" y="364" width="280" height="40" rx="0" class="bar-insurance" />
+  <rect x="436" y="364" width="4" height="40" rx="4" fill="#1a3a5c" />
+  <text x="100" y="389" text-anchor="middle" class="pct-text">3割</text>
+  <text x="300" y="389" text-anchor="middle" class="pct-text">7割（保険給付）</text>
+</svg>
