@@ -1,11 +1,16 @@
 import { AFFILIATE_LINKS } from '@/lib/affiliate';
 
 type AffiliateCardProps = {
-  linkId: keyof typeof AFFILIATE_LINKS;
+  linkId: string;
 };
 
 export function AffiliateCard({ linkId }: AffiliateCardProps) {
-  const link = AFFILIATE_LINKS[linkId];
+  const link = AFFILIATE_LINKS[linkId as keyof typeof AFFILIATE_LINKS];
+
+  if (!link) {
+    console.warn(`AffiliateCard: unknown linkId "${linkId}"`);
+    return null;
+  }
 
   return (
     <div className="my-6 rounded-lg border border-brand-mist dark:border-border shadow-sm overflow-hidden">
