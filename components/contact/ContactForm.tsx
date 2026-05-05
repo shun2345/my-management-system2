@@ -21,6 +21,7 @@ export function ContactForm() {
       email: formData.get('email') as string,
       subject: formData.get('subject') as string,
       body: formData.get('body') as string,
+      _hp: formData.get('_hp') as string,
     }
 
     try {
@@ -69,6 +70,16 @@ export function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
+      {/* ハニーポット（ボット対策） */}
+      <div aria-hidden="true" className="absolute -left-[9999px] -top-[9999px]">
+        <input
+          type="text"
+          name="_hp"
+          tabIndex={-1}
+          autoComplete="off"
+        />
+      </div>
+
       {/* お名前 */}
       <div>
         <label htmlFor="name" className="block text-sm font-medium">

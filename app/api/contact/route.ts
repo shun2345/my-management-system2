@@ -1,44 +1,34 @@
 import { NextResponse } from 'next/server'
-
-const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-
-function validateBody(data: unknown): string[] {
-  const errors: string[] = []
-
-  if (typeof data !== 'object' || data === null) {
-    return ['リクエストの形式が正しくありません']
-  }
-
-  const { name, email, subject, body } = data as Record<string, unknown>
-
-  if (typeof name !== 'string' || name.length < 1 || name.length > 100) {
-    errors.push('お名前は1〜100文字で入力してください')
-  }
-
-  if (typeof email !== 'string' || !EMAIL_REGEX.test(email)) {
-    errors.push('有効なメールアドレスを入力してください')
-  }
-
-  if (
-    typeof subject !== 'string' ||
-    subject.length < 1 ||
-    subject.length > 200
-  ) {
-    errors.push('件名は1〜200文字で入力してください')
-  }
-
-  if (
-    typeof body !== 'string' ||
-    body.length < 10 ||
-    body.length > 5000
-  ) {
-    errors.push('お問い合わせ内容は10〜5000文字で入力してください')
-  }
-
-  return errors
-}
+import { contactSchema } from '@/lib/validations/contact'
+import { checkRateLimit } from '@/lib/rate-limit'
+import { isValidOrigin } from '@/lib/origin-check'
+import { sendContactEmails } from '@/lib/email'
 
 export async function POST(request: Request) {
+  // 1. Origin検証
+  const origin = request.headers.get('origin')
+  if (!isValidOrigin(origin)) {
+    return NextResponse.json(
+      { errors: ['不正なリクエストです'] },
+      { status: 403 }
+    )
+  }
+
+  // 2. レートリミット
+  const forwarded = request.headers.get('x-forwarded-for')
+  const ip = forwarded?.split(',')[0]?.trim() ?? 'unknown'
+  const rateLimit = checkRateLimit(ip)
+  if (!rateLimit.allowed) {
+    return NextResponse.json(
+      { errors: ['送信回数の上限に達しました。しばらく時間をおいて再度お試しください。'] },
+      {
+        status: 429,
+        headers: { 'Retry-After': String(rateLimit.retryAfterSeconds) },
+      }
+    )
+  }
+
+  // 3. Zodバリデーション
   let data: unknown
   try {
     data = await request.json()
@@ -49,16 +39,33 @@ export async function POST(request: Request) {
     )
   }
 
-  const errors = validateBody(data)
-  if (errors.length > 0) {
+  const result = contactSchema.safeParse(data)
+  if (!result.success) {
+    const errors = result.error.issues.map((issue) => issue.message)
     return NextResponse.json({ errors }, { status: 400 })
   }
 
-  const { name, email, subject, body } = data as Record<string, string>
+  // ハニーポットチェック（値が入っていたらボット）
+  if (result.data._hp) {
+    // ボットには成功を返して静かに無視
+    return NextResponse.json({ success: true })
+  }
 
-  // TODO: メールサービス（Resend / SendGrid）を統合する
-  // ここで送信処理を実装する
-  console.log('[Contact Form]', { name, email, subject, body })
+  // 4. メール送信
+  try {
+    await sendContactEmails({
+      name: result.data.name,
+      email: result.data.email,
+      subject: result.data.subject,
+      body: result.data.body,
+    })
+  } catch (error) {
+    console.error('[Contact API] メール送信エラー:', error)
+    return NextResponse.json(
+      { errors: ['送信に失敗しました。時間をおいて再度お試しください。'] },
+      { status: 500 }
+    )
+  }
 
   return NextResponse.json({ success: true })
 }
