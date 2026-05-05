@@ -1,4 +1,4 @@
-import fs from 'node:fs'
+import { readFile } from 'node:fs/promises'
 import path from 'node:path'
 import type { Metadata } from 'next'
 import Link from 'next/link'
@@ -59,7 +59,7 @@ export default async function PostPage({ params }: Props) {
   const mdxPath = path.join(process.cwd(), 'content', 'posts', `${slug}.mdx`)
   let tocEntries: ReturnType<typeof extractToc> = []
   try {
-    const rawContent = fs.readFileSync(mdxPath, 'utf-8')
+    const rawContent = await readFile(mdxPath, 'utf-8')
     tocEntries = extractToc(rawContent)
   } catch {
     // ファイルが読めない場合はTOCなしで続行

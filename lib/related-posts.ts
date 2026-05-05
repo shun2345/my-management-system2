@@ -5,6 +5,8 @@ export function getRelatedPosts(
   all: Post[],
   limit = 3
 ): Post[] {
+  const currentTags = new Set(current.tags)
+
   const scored = all
     .filter((p) => p.slug !== current.slug)
     .map((post) => {
@@ -13,7 +15,7 @@ export function getRelatedPosts(
         score += 3
       }
       for (const tag of post.tags) {
-        if (current.tags.includes(tag)) {
+        if (currentTags.has(tag)) {
           score += 1
         }
       }
