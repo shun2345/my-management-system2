@@ -25,8 +25,7 @@
   <text x="126" y="108" class="step-desc">介護保険の要介護認定申請書を提出します</text>
 
   <!-- Arrow 1 -->
-  <polygon points="240,128 230,144 250,144" class="arrow" />
-  <rect x="238" y="128" width="4" height="16" class="arrow" />
+  <polygon points="222,133 258,133 240,153" class="arrow" />
 
   <!-- Step 2 -->
   <rect x="60" y="158" width="360" height="72" class="step-box" />
@@ -36,8 +35,7 @@
   <text x="126" y="210" class="step-desc">調査員が自宅を訪問し心身の状態を確認します</text>
 
   <!-- Arrow 2 -->
-  <polygon points="240,230 230,246 250,246" class="arrow" />
-  <rect x="238" y="230" width="4" height="16" class="arrow" />
+  <polygon points="222,235 258,235 240,255" class="arrow" />
 
   <!-- Step 3 -->
   <rect x="60" y="260" width="360" height="72" class="step-box" />
@@ -47,8 +45,7 @@
   <text x="126" y="312" class="step-desc">介護認定審査会が要介護度を判定します</text>
 
   <!-- Arrow 3 -->
-  <polygon points="240,332 230,348 250,348" class="arrow" />
-  <rect x="238" y="332" width="4" height="16" class="arrow" />
+  <polygon points="222,337 258,337 240,357" class="arrow" />
 
   <!-- Step 4 -->
   <rect x="60" y="362" width="360" height="72" class="step-box" />
@@ -58,8 +55,7 @@
   <text x="126" y="414" class="step-desc">ケアマネジャーとサービスの種類や頻度を相談します</text>
 
   <!-- Arrow 4 -->
-  <polygon points="240,434 230,450 250,450" class="arrow" />
-  <rect x="238" y="434" width="4" height="16" class="arrow" />
+  <polygon points="222,439 258,439 240,459" class="arrow" />
 
   <!-- Step 5 -->
   <rect x="60" y="464" width="360" height="72" class="step-box" />
