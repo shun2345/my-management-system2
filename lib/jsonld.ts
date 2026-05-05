@@ -1,4 +1,4 @@
-import { BASE_URL } from './constants'
+import { BASE_URL, SITE_NAME, SITE_DESCRIPTION } from './constants'
 
 type ArticleJsonLdInput = {
   title: string
@@ -7,6 +7,7 @@ type ArticleJsonLdInput = {
   updatedAt: string
   slug: string
   author: string
+  image?: string
 }
 
 export function generateArticleJsonLd({
@@ -16,6 +17,7 @@ export function generateArticleJsonLd({
   updatedAt,
   slug,
   author,
+  image,
 }: ArticleJsonLdInput) {
   return {
     '@context': 'https://schema.org',
@@ -29,6 +31,38 @@ export function generateArticleJsonLd({
       '@type': 'Person',
       name: author,
     },
+    ...(image ? { image } : {}),
+  }
+}
+
+export function generateOrganizationJsonLd() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: SITE_NAME,
+    url: BASE_URL,
+    logo: `${BASE_URL}/logo.png`,
+    description: SITE_DESCRIPTION,
+  }
+}
+
+type FAQItem = {
+  question: string
+  answer: string
+}
+
+export function generateFAQPageJsonLd(items: FAQItem[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: items.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.answer,
+      },
+    })),
   }
 }
 

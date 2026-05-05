@@ -4,6 +4,7 @@ import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { ThemeProvider } from '@/components/providers/ThemeProvider'
 import { BASE_URL, SITE_NAME, SITE_DESCRIPTION } from '@/lib/constants'
+import { generateOrganizationJsonLd } from '@/lib/jsonld'
 import './globals.css'
 
 const inter = Inter({
@@ -64,6 +65,12 @@ export default function RootLayout({
       className={`${notoSansJP.variable} ${notoSerifJP.variable} ${inter.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(generateOrganizationJsonLd()),
+          }}
+        />
         <ThemeProvider>
           <a
             href="#main-content"
