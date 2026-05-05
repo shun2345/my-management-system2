@@ -30,7 +30,11 @@ export const CATEGORY_DESCRIPTIONS: Record<string, string> = {
 
 export function getCategoryHref(category: string): string {
   const slug = CATEGORY_SLUG_MAP[category]
-  return slug ? `/category/${slug}` : '/category'
+  if (!slug) {
+    console.warn(`[navigation] Unknown category: "${category}"`)
+    return '/'
+  }
+  return `/category/${slug}`
 }
 
 export const FOOTER_LINKS = [

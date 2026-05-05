@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { Badge } from '@/components/ui/badge'
+import { PRBadge } from '@/components/mdx/PRBadge'
 import { getCategoryHref } from '@/lib/navigation'
 
 type PostHeaderProps = {
@@ -30,13 +31,7 @@ export function PostHeader({
         {title}
       </h1>
 
-      {hasAffiliate && (
-        <div className="mt-3">
-          <span className="inline-block rounded-sm bg-brand-vermilion px-2.5 py-1 text-xs font-bold text-white">
-            PR
-          </span>
-        </div>
-      )}
+      {hasAffiliate && <PRBadge />}
 
       <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-muted-foreground">
         <time dateTime={publishedAt}>公開: {formatDate(publishedAt)}</time>

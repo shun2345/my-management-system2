@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { posts } from '@/.velite'
 import { PostList } from '@/components/article'
 import { CATEGORIES } from '@/lib/navigation'
-import { SITE_NAME, SITE_DESCRIPTION } from '@/lib/constants'
+import { SITE_NAME, SITE_DESCRIPTION, SITE_TAGLINE } from '@/lib/constants'
 
 export const metadata: Metadata = {
   title: { absolute: SITE_NAME },
@@ -38,9 +38,9 @@ export default function Home() {
     <div className="mx-auto max-w-[1120px] px-4 py-12">
       {/* Hero */}
       <section className="py-8 text-center sm:py-12">
-        <h1 className="font-heading">実家のしらべ</h1>
+        <h1 className="font-heading">{SITE_NAME}</h1>
         <p className="mt-2 text-sm text-muted-foreground">
-          親と家族の備え帖
+          {SITE_TAGLINE}
         </p>
         <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
           介護・相続・終活・お金を、公的制度で整理するメディアです。

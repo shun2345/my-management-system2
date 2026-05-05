@@ -1,14 +1,37 @@
+'use client';
+
 import { AFFILIATE_LINKS } from '@/lib/affiliate';
 
 type AffiliateCardProps = {
   linkId: string;
 };
 
+function trackClick(linkId: string, label: string, asp: string, category: string) {
+  if (typeof window !== 'undefined' && 'gtag' in window) {
+    (window as unknown as { gtag: (...args: unknown[]) => void }).gtag('event', 'affiliate_click', {
+      link_id: linkId,
+      label,
+      asp,
+      category,
+    });
+  }
+
+  if (typeof window !== 'undefined') {
+    window.dispatchEvent(
+      new CustomEvent('affiliate_click', {
+        detail: { link_id: linkId, label, asp, category },
+      })
+    );
+  }
+}
+
 export function AffiliateCard({ linkId }: AffiliateCardProps) {
   const link = AFFILIATE_LINKS[linkId as keyof typeof AFFILIATE_LINKS];
 
   if (!link) {
-    console.warn(`AffiliateCard: unknown linkId "${linkId}"`);
+    if (process.env.NODE_ENV === 'development') {
+      console.warn(`AffiliateCard: unknown linkId "${linkId}"`);
+    }
     return null;
   }
 
@@ -35,6 +58,7 @@ export function AffiliateCard({ linkId }: AffiliateCardProps) {
             target="_blank"
             rel="noopener noreferrer sponsored"
             className="mt-3 inline-block rounded-md bg-brand-navy text-brand-cream dark:bg-primary dark:text-primary-foreground px-4 py-2 text-sm font-medium transition-opacity hover:opacity-90"
+            onClick={() => trackClick(linkId, link.label, link.asp, link.category)}
           >
             詳しく見る
           </a>
