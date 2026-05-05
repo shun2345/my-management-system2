@@ -1,8 +1,11 @@
 import type { Metadata } from 'next'
 import { Inter, Noto_Sans_JP, Noto_Serif_JP, JetBrains_Mono } from 'next/font/google'
+import { Analytics } from '@vercel/analytics/next'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
+import { CookieConsent } from '@/components/layout/CookieConsent'
 import { ThemeProvider } from '@/components/providers/ThemeProvider'
+import { GoogleAnalyticsProvider } from '@/components/providers/GoogleAnalyticsProvider'
 import { BASE_URL, SITE_NAME, SITE_DESCRIPTION } from '@/lib/constants'
 import { generateOrganizationJsonLd } from '@/lib/jsonld'
 import './globals.css'
@@ -51,6 +54,11 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
   },
+  ...(process.env.NEXT_PUBLIC_GSC_VERIFICATION && {
+    verification: {
+      google: process.env.NEXT_PUBLIC_GSC_VERIFICATION,
+    },
+  }),
 }
 
 export default function RootLayout({
@@ -65,6 +73,8 @@ export default function RootLayout({
       className={`${notoSansJP.variable} ${notoSerifJP.variable} ${inter.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        <Analytics />
+        <GoogleAnalyticsProvider />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -83,6 +93,7 @@ export default function RootLayout({
             {children}
           </main>
           <Footer />
+          <CookieConsent />
         </ThemeProvider>
       </body>
     </html>
