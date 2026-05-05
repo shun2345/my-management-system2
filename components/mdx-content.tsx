@@ -5,6 +5,9 @@ import { Disclaimer } from "@/components/mdx/Disclaimer";
 import { PRBadge } from "@/components/mdx/PRBadge";
 import { Callout } from "@/components/mdx/Callout";
 import { ExpertCTA } from "@/components/mdx/ExpertCTA";
+import { KeyPoints } from "@/components/mdx/KeyPoints";
+import { Figure } from "@/components/mdx/Figure";
+import { Example } from "@/components/mdx/Example";
 
 const mdxComponents = {
   Citation,
@@ -13,6 +16,9 @@ const mdxComponents = {
   PRBadge,
   Callout,
   ExpertCTA,
+  KeyPoints,
+  Figure,
+  Example,
 };
 
 type MDXContentProps = {

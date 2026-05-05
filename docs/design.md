@@ -337,6 +337,31 @@ CLAUDE.md セクション4の各 MDX コンポーネントに対応する具体�
 
 ボタンの角丸は 6px(`rounded-md`)で統一。完全な角丸(rounded-full)は使わない。
 
+### 6.8 KeyPoints(要点ボックス)
+
+- コンテナ: `rounded-md border border-brand-mist bg-brand-cream/40`、padding 20px、margin-y 24px
+- ダーク: `dark:border-border dark:bg-muted/30`
+- アイコン: lucide-react `ListChecks`(20px)、`text-brand-navy`
+- タイトル: `font-heading text-base font-bold text-brand-navy`、アイコン横に配置
+- children: `mt-3`、リスト(ul/li)を受け取る想定
+
+### 6.9 Figure(図版+キャプション)
+
+- `<figure>` + `<figcaption>` のセマンティック HTML
+- 画像ラッパー: `rounded-lg border border-brand-mist overflow-hidden`
+- 画像: `<img>` で SVG/PNG 対応、`loading="lazy"`、幅 100%
+- キャプション: `text-sm text-muted-foreground text-center mt-2`
+- 出典: `text-xs text-semantic-muted`、「出典:」を接頭辞で表示
+
+### 6.10 Example(具体例ボックス)
+
+- Callout と同じ左ボーダーパターンだが、色・用途で差別化
+- コンテナ: `rounded-r-md border-l-4 border-brand-navy/30 bg-brand-cream/30`、padding 16px、margin-y 16px
+- ダーク: `dark:border-l-primary/30 dark:bg-muted/30`
+- アイコン: lucide-react `Lightbulb`(16px)、`text-brand-navy/70`
+- ラベル: `text-xs font-bold text-brand-navy`、アイコン横に配置
+- children: `mt-2`、内部で `<Citation>` 等の他コンポーネントも使用可能
+
 ---
 
 ## 7. 画像・写真の方針

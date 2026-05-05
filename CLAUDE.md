@@ -207,6 +207,9 @@ author: <<<運営者の表示名>>>
 - 漢字とひらがなのバランス: 漢字3割程度
 - 「私は」「うちは」など主語は使わない（解説者ポジション維持）
 - 読者への呼びかけは「読者の方」「ご家族の状況によって」など客観的に
+- 文体の詳細(AI臭さを消す7つの実践技術、禁止表現と推奨表現の対照表、Before/After例)は
+- [docs/WRITING-STYLE.md](docs/WRITING-STYLE.md) を参照。
+- 記事執筆時は本ファイルとWRITING-STYLE.mdを併読する。
 
 ---
 
@@ -266,6 +269,53 @@ author: <<<運営者の表示名>>>
 ```
 
 カテゴリに応じて適切な専門家への相談を促すブロックを表示する。`category` は kaigo / souzoku / shukatsu / okane の4種。
+
+### 4.7 KeyPoints - 要点ボックス
+
+```mdx
+<KeyPoints>
+- 介護保険は40歳以上が加入対象
+- 要介護認定の申請先は市区町村の窓口
+- 認定結果が出るまで原則30日
+</KeyPoints>
+
+<KeyPoints title="まとめ">
+- ポイント1
+- ポイント2
+</KeyPoints>
+```
+
+記事冒頭の「結論先出し」や末尾の「まとめ」で使用する。`title` を省略すると「この記事のポイント」が表示される。children には Markdown リスト（ul/li）を渡す。
+
+### 4.8 Figure - 図版表示
+
+```mdx
+<Figure
+  src="/images/kaigo-flow.svg"
+  alt="介護保険申請の流れを示すフロー図"
+  caption="介護保険の申請から認定までの流れ"
+  source="厚生労働省「介護保険制度の概要」を元に作成"
+/>
+```
+
+画像・SVG図にキャプションと出典を統一フォーマットで表示する。`caption` と `source` は任意。`width` / `height` も指定可能。
+
+### 4.9 Example - 具体例ボックス
+
+```mdx
+<Example>
+Aさん（52歳）の父親（78歳）が要介護2の認定を受けた場合、
+介護保険の自己負担割合は原則1割となります。
+
+<Citation source="厚生労働省「介護保険制度の概要」" url="https://www.mhlw.go.jp/..." accessedAt="2026-01-15" />
+</Example>
+
+<Example title="相続税の計算例">
+具体的な計算例をここに記述
+</Example>
+```
+
+仮想のケースで制度を具体的に説明するボックス。`title` を省略すると「具体例」が表示される。children 内で `<Citation>` 等の他コンポーネントも使用可能。
 
 ---
 
@@ -357,7 +407,7 @@ ASP規約上、媒体によってアフィリエイトリンクの掲載可否�
 1. `npm run new:post` でひな型を生成（または同等の操作）
 2. frontmatter を埋める（出典のURLは実在を確認）
 3. リサーチ: 公的資料から該当する制度・数値を取得
-4. 構成テンプレートに沿って本文を執筆
+4. 構成テンプレートに沿って本文を執筆([docs/WRITING-STYLE.md](docs/WRITING-STYLE.md) のスタイルガイドを必ず適用)
 5. すべての数値・引用に `<Citation>` を付ける
 6. 必要に応じて `<AffiliateCard>` `<ExpertCTA>` を配置
 7. 記事末尾に `<Disclaimer>` と出典一覧
@@ -523,6 +573,7 @@ LINE登録数を最重要KPIに置く。フォロワー数より、LINEで継続
 - 2026-05-05: docs/DESIGN.md を新設。デザインシステムを CLAUDE.md から分離し、
 - ロゴ・カラー・タイポグラフィ・コンポーネントスタイル・SNS用ビジュアル仕様を
 - 集約。サイト名を「実家のしらべ」に確定。
+- <<<2026-05-06>>>: docs/WRITING-STYLE.md を新設。AI臭さを消す文体ガイドを CLAUDE.md セクション3.3から分離・拡張
 
 ---
 
@@ -552,3 +603,4 @@ Claude Code が判断に迷う場面では、次の優先順位で判断する�
 これらは CLAUDE.md と矛盾する場合、CLAUDE.md が優先されます。
 
 - [docs/DESIGN.md](docs/DESIGN.md) - デザインシステム(ロゴ・カラー・タイポグラフィ・コンポーネントスタイル・SNS用ビジュアル仕様)
+- [docs/WRITING-STYLE.md](docs/WRITING-STYLE.md) - 記事執筆スタイルガイド(AI臭さを消す実践技術、禁止表現対照表)
