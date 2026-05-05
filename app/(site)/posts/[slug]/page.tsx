@@ -24,6 +24,7 @@ import { BASE_URL, DEFAULT_AUTHOR } from '@/lib/constants'
 import { getCategoryHref } from '@/lib/navigation'
 import { extractToc } from '@/lib/toc'
 import { getRelatedPosts } from '@/lib/related-posts'
+import { ArticleProvider } from '@/components/providers/ArticleContext'
 
 type Props = {
   params: Promise<{ slug: string }>
@@ -181,7 +182,9 @@ export default async function PostPage({ params }: Props) {
           {/* 本文 + デスクトップTOC */}
           <div className="lg:grid lg:grid-cols-[minmax(0,720px)_200px] lg:gap-8">
             <div className="prose dark:prose-invert max-w-none">
-              <MDXContent code={post.body} />
+              <ArticleProvider category={post.category}>
+                <MDXContent code={post.body} />
+              </ArticleProvider>
             </div>
 
             {/* デスクトップ用TOC sidebar */}
