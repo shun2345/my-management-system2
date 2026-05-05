@@ -27,6 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   } catch {
     return {}
   }
+  if (tag.length > 100) return {}
 
   const hasPosts = posts.some((p) => p.tags.includes(tag))
   if (!hasPosts) return {}
@@ -46,6 +47,7 @@ export default async function TagPage({ params }: Props) {
   } catch {
     notFound()
   }
+  if (tag.length > 100) notFound()
 
   const tagPosts = [...posts]
     .filter((p) => p.tags.includes(tag))
