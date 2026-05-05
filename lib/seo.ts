@@ -11,6 +11,7 @@ type SeoInput = {
   publishedAt?: string
   updatedAt?: string
   author?: string
+  category?: string
 }
 
 export function generateSeoMetadata({
@@ -23,9 +24,13 @@ export function generateSeoMetadata({
   publishedAt,
   updatedAt,
   author,
+  category,
 }: SeoInput): Metadata {
   const url = `${BASE_URL}${path}`
-  const image = ogImage ?? `${BASE_URL}/api/og?title=${encodeURIComponent(title)}`
+  const ogParams = new URLSearchParams({ title })
+  if (category) ogParams.set('category', category)
+  if (author) ogParams.set('author', author)
+  const image = ogImage ?? `${BASE_URL}/api/og?${ogParams.toString()}`
 
   const indexable = robots?.index !== false
   const followable = robots?.follow !== false
