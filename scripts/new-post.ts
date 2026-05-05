@@ -31,12 +31,14 @@ author: ""
 
 `;
 
-const filePath = path.join(process.cwd(), 'content', 'posts', `${slug}.mdx`);
+const dir = path.join(process.cwd(), 'content', 'posts');
+const filePath = path.join(dir, `${slug}.mdx`);
 
 if (fs.existsSync(filePath)) {
   console.error(`Error: ${filePath} already exists`);
   process.exit(1);
 }
 
+fs.mkdirSync(dir, { recursive: true });
 fs.writeFileSync(filePath, template, 'utf-8');
 console.log(`Created: ${filePath}`);

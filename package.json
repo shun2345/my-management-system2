@@ -7,7 +7,9 @@
     "build": "velite && next build",
     "start": "next start",
     "lint": "eslint",
-    "type-check": "velite && tsc --noEmit"
+    "type-check": "velite && tsc --noEmit",
+    "new:post": "npx tsx scripts/new-post.ts",
+    "check:cite": "npx tsx scripts/check-citations.ts"
   },
   "dependencies": {
     "@base-ui/react": "^1.4.1",
