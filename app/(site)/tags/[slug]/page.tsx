@@ -21,7 +21,12 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
-  const tag = decodeURIComponent(slug)
+  let tag: string
+  try {
+    tag = decodeURIComponent(slug)
+  } catch {
+    return {}
+  }
 
   const hasPosts = posts.some((p) => p.tags.includes(tag))
   if (!hasPosts) return {}
@@ -35,7 +40,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function TagPage({ params }: Props) {
   const { slug } = await params
-  const tag = decodeURIComponent(slug)
+  let tag: string
+  try {
+    tag = decodeURIComponent(slug)
+  } catch {
+    notFound()
+  }
 
   const tagPosts = [...posts]
     .filter((p) => p.tags.includes(tag))

@@ -12,11 +12,18 @@ const CATEGORY_COLORS: Record<string, string> = {
 
 const DEFAULT_BAND_COLOR = '#1a3a5c'
 
+const VALID_CATEGORIES = new Set(Object.keys(CATEGORY_COLORS))
+
+function truncate(value: string, max: number): string {
+  return value.length > max ? value.slice(0, max) + '…' : value
+}
+
 export async function GET(request: NextRequest) {
   const { searchParams } = request.nextUrl
-  const title = searchParams.get('title') ?? '実家のしらべ'
-  const category = searchParams.get('category') ?? ''
-  const author = searchParams.get('author') ?? '運営者'
+  const title = truncate(searchParams.get('title') ?? '実家のしらべ', 100)
+  const rawCategory = searchParams.get('category') ?? ''
+  const category = VALID_CATEGORIES.has(rawCategory) ? rawCategory : ''
+  const author = truncate(searchParams.get('author') ?? '運営者', 50)
 
   const bandColor = CATEGORY_COLORS[category] ?? DEFAULT_BAND_COLOR
 
