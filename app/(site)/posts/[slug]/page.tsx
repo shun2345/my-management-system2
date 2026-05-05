@@ -44,6 +44,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     publishedAt: post.publishedAt,
     updatedAt: post.updatedAt,
     author: post.author ?? DEFAULT_AUTHOR,
+    category: post.category,
   })
 }
 
@@ -76,7 +77,7 @@ export default async function PostPage({ params }: Props) {
     updatedAt: post.updatedAt,
     slug: post.slug,
     author: post.author ?? DEFAULT_AUTHOR,
-    image: `${BASE_URL}/api/og?title=${encodeURIComponent(post.title)}`,
+    image: `${BASE_URL}/api/og?${new URLSearchParams({ title: post.title, category: post.category, author: post.author ?? DEFAULT_AUTHOR }).toString()}`,
   })
 
   const breadcrumbItems = [
