@@ -22,7 +22,7 @@ export function Citation({
           rel="noopener noreferrer"
           role="doc-noteref"
           aria-label={`出典: ${source}（${accessedAt} アクセス）`}
-          className="text-primary no-underline hover:underline focus:underline focus:outline-none focus:ring-2 focus:ring-primary/50 rounded-sm px-0.5"
+          className="text-brand-vermilion no-underline hover:underline focus:underline focus:outline-none focus:ring-2 focus:ring-brand-navy/50 rounded-sm px-0.5"
         >
           [{number ?? '*'}]
         </a>
@@ -31,17 +31,19 @@ export function Citation({
   }
 
   return (
-    <cite className="block text-sm text-foreground/60 not-italic">
-      出典:{' '}
+    <cite className="not-italic block border-l-4 border-brand-navy/40 bg-brand-cream/50 dark:bg-brand-navy/10 p-4 text-sm rounded-r-md my-4">
+      <span className="text-foreground/80">出典: </span>
       <a
         href={url}
         target="_blank"
         rel="noopener noreferrer"
-        className="underline"
+        className="text-brand-navy dark:text-primary underline underline-offset-2"
       >
         {source}
       </a>
-      （{accessedAt} アクセス）
+      <span className="ml-2 text-semantic-muted text-xs">
+        （{accessedAt} アクセス）
+      </span>
     </cite>
   );
 }

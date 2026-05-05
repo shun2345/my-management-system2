@@ -14,7 +14,7 @@ export function TableOfContents({ entries }: TableOfContentsProps) {
           <li key={entry.id} className={entry.level === 3 ? 'pl-4' : ''}>
             <a
               href={`#${entry.id}`}
-              className="text-muted-foreground transition-colors hover:text-primary"
+              className="text-muted-foreground transition-colors hover:text-brand-navy dark:hover:text-primary"
             >
               {entry.text}
             </a>
@@ -27,15 +27,15 @@ export function TableOfContents({ entries }: TableOfContentsProps) {
   return (
     <>
       {/* モバイル: 折りたたみ */}
-      <details className="mb-8 rounded-lg border bg-card p-4 lg:hidden">
-        <summary className="cursor-pointer font-semibold">目次</summary>
+      <details className="mb-8 rounded-lg border border-border bg-card p-4 lg:hidden">
+        <summary className="cursor-pointer font-heading font-semibold">目次</summary>
         <div className="mt-3">{nav}</div>
       </details>
 
       {/* デスクトップ: sticky sidebar */}
       <aside className="hidden lg:block">
         <div className="sticky top-24">
-          <p className="mb-3 text-sm font-semibold">目次</p>
+          <p className="mb-3 text-sm font-heading font-semibold">目次</p>
           {nav}
         </div>
       </aside>

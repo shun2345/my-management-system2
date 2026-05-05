@@ -9,11 +9,26 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-noto-sans-jp), var(--font-geist-sans),
+  --font-sans: var(--font-noto-sans-jp), var(--font-inter),
     'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
-  --font-mono: var(--font-geist-mono);
-  --font-heading: var(--font-noto-sans-jp), var(--font-geist-sans),
-    'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), 'Menlo', monospace;
+  --font-heading: var(--font-noto-serif-jp), Georgia,
+    'Hiragino Mincho ProN', serif;
+
+  /* Brand colors */
+  --color-brand-navy: #1a3a5c;
+  --color-brand-cream: #f5ede0;
+  --color-brand-vermilion: #c1492f;
+  --color-brand-ink: #1a1a1a;
+  --color-brand-mist: #e8e2d4;
+
+  /* Semantic colors */
+  --color-semantic-success: #3a6b4f;
+  --color-semantic-warning: #b8821b;
+  --color-semantic-danger: #a83030;
+  --color-semantic-info: #3a5a7a;
+  --color-semantic-muted: #6b6b6b;
+
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -57,57 +72,101 @@ body {
 }
 
 :root {
-  /* Warm off-white background with stone-based greys */
-  --background: oklch(0.985 0.002 75);
-  --foreground: oklch(0.216 0.006 56.04);
+  /* Brand Cream background */
+  --background: #f5ede0;
+  --foreground: #1a1a1a;
 
-  /* Card: slightly warmer than background */
-  --card: oklch(0.995 0.001 75);
-  --card-foreground: oklch(0.216 0.006 56.04);
+  /* Card */
+  --card: #faf6ef;
+  --card-foreground: #1a1a1a;
 
-  --popover: oklch(0.995 0.001 75);
-  --popover-foreground: oklch(0.216 0.006 56.04);
+  --popover: #faf6ef;
+  --popover-foreground: #1a1a1a;
 
-  /* Primary: calming teal green for trust & reliability */
-  --primary: oklch(0.47 0.1 195);
-  --primary-foreground: oklch(0.985 0.002 75);
+  /* Primary: Brand Navy */
+  --primary: #1a3a5c;
+  --primary-foreground: #f5ede0;
 
-  /* Secondary: warm stone */
-  --secondary: oklch(0.955 0.005 75);
-  --secondary-foreground: oklch(0.316 0.006 56.04);
+  /* Secondary: Cream on Navy text */
+  --secondary: #f5ede0;
+  --secondary-foreground: #1a3a5c;
 
-  /* Muted: soft warm grey */
-  --muted: oklch(0.945 0.005 75);
-  --muted-foreground: oklch(0.553 0.013 56.04);
+  /* Muted: Mist */
+  --muted: #e8e2d4;
+  --muted-foreground: #6b6b6b;
 
-  /* Accent: lighter teal tint */
-  --accent: oklch(0.94 0.03 195);
-  --accent-foreground: oklch(0.3 0.07 195);
+  /* Accent: Vermilion */
+  --accent: #c1492f;
+  --accent-foreground: #ffffff;
 
-  --destructive: oklch(0.577 0.245 27.325);
+  --destructive: #a83030;
 
-  /* Borders: warm stone borders */
-  --border: oklch(0.885 0.008 75);
-  --input: oklch(0.885 0.008 75);
-  --ring: oklch(0.47 0.1 195);
+  /* Borders: Mist */
+  --border: #e8e2d4;
+  --input: #e8e2d4;
+  --ring: #1a3a5c;
 
-  /* Chart colors: teal-based palette */
-  --chart-1: oklch(0.47 0.1 195);
-  --chart-2: oklch(0.6 0.08 195);
-  --chart-3: oklch(0.73 0.06 195);
-  --chart-4: oklch(0.4 0.06 56.04);
-  --chart-5: oklch(0.55 0.04 56.04);
+  /* Chart colors */
+  --chart-1: #1a3a5c;
+  --chart-2: #3a5a7a;
+  --chart-3: #c1492f;
+  --chart-4: #3a6b4f;
+  --chart-5: #b8821b;
 
-  --radius: 0.625rem;
+  --radius: 0.375rem;
 
-  --sidebar: oklch(0.975 0.003 75);
-  --sidebar-foreground: oklch(0.216 0.006 56.04);
-  --sidebar-primary: oklch(0.47 0.1 195);
-  --sidebar-primary-foreground: oklch(0.985 0.002 75);
-  --sidebar-accent: oklch(0.94 0.03 195);
-  --sidebar-accent-foreground: oklch(0.3 0.07 195);
-  --sidebar-border: oklch(0.885 0.008 75);
-  --sidebar-ring: oklch(0.47 0.1 195);
+  --sidebar: #f5ede0;
+  --sidebar-foreground: #1a1a1a;
+  --sidebar-primary: #1a3a5c;
+  --sidebar-primary-foreground: #f5ede0;
+  --sidebar-accent: #e8e2d4;
+  --sidebar-accent-foreground: #1a3a5c;
+  --sidebar-border: #e8e2d4;
+  --sidebar-ring: #1a3a5c;
+}
+
+.dark {
+  --background: #121820;
+  --foreground: #e8e2d4;
+
+  --card: #1a2230;
+  --card-foreground: #e8e2d4;
+
+  --popover: #1a2230;
+  --popover-foreground: #e8e2d4;
+
+  --primary: #7aaddb;
+  --primary-foreground: #121820;
+
+  --secondary: #1e2a38;
+  --secondary-foreground: #e8e2d4;
+
+  --muted: #1e2a38;
+  --muted-foreground: #8a9aaa;
+
+  --accent: #e06b50;
+  --accent-foreground: #ffffff;
+
+  --destructive: #d04040;
+
+  --border: #2a3a4a;
+  --input: #2a3a4a;
+  --ring: #7aaddb;
+
+  --chart-1: #7aaddb;
+  --chart-2: #5a8ab0;
+  --chart-3: #e06b50;
+  --chart-4: #5a9a6f;
+  --chart-5: #d4a030;
+
+  --sidebar: #121820;
+  --sidebar-foreground: #e8e2d4;
+  --sidebar-primary: #7aaddb;
+  --sidebar-primary-foreground: #121820;
+  --sidebar-accent: #1e2a38;
+  --sidebar-accent-foreground: #e8e2d4;
+  --sidebar-border: #2a3a4a;
+  --sidebar-ring: #7aaddb;
 }
 
 @layer base {
@@ -118,33 +177,51 @@ body {
     @apply bg-background text-foreground;
     font-size: 1rem;
     line-height: 1.8;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.02em;
   }
   html {
     @apply font-sans;
   }
   h1 {
-    font-size: 1.5rem;
+    font-family: var(--font-heading);
+    font-size: 1.75rem;
     font-weight: 700;
     line-height: 1.4;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.05em;
+  }
+  @media (min-width: 768px) {
+    h1 {
+      font-size: 2rem;
+    }
   }
   h2 {
-    font-size: 1.25rem;
+    font-family: var(--font-heading);
+    font-size: 1.375rem;
     font-weight: 700;
-    line-height: 1.4;
-    letter-spacing: 0.02em;
+    line-height: 1.5;
+    letter-spacing: 0.05em;
+  }
+  @media (min-width: 768px) {
+    h2 {
+      font-size: 1.5rem;
+    }
   }
   h3 {
+    font-family: var(--font-heading);
     font-size: 1.125rem;
-    font-weight: 500;
-    line-height: 1.4;
-    letter-spacing: 0.02em;
+    font-weight: 600;
+    line-height: 1.5;
+    letter-spacing: 0.05em;
+  }
+  @media (min-width: 768px) {
+    h3 {
+      font-size: 1.25rem;
+    }
   }
 
   /* prose (記事本文) カスタマイズ */
   .prose {
-    line-height: 1.9;
+    line-height: 1.85;
     letter-spacing: 0.02em;
   }
   .prose h2 {
@@ -157,7 +234,7 @@ body {
   }
   .prose blockquote {
     border-left-color: var(--primary);
-    background-color: color-mix(in oklch, var(--muted) 50%, transparent);
+    background-color: color-mix(in srgb, var(--muted) 50%, transparent);
     padding: 0.75em 1em;
     border-radius: 0 0.375rem 0.375rem 0;
   }
@@ -167,6 +244,9 @@ body {
     text-underline-offset: 2px;
   }
   .prose a:hover {
-    color: color-mix(in oklch, var(--primary) 80%, black);
+    opacity: 0.8;
+  }
+  .prose code {
+    font-family: var(--font-mono);
   }
 }

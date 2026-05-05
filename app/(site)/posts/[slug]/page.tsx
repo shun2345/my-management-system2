@@ -100,12 +100,12 @@ export default async function PostPage({ params }: Props) {
         }}
       />
 
-      <div className="mx-auto max-w-4xl px-4 py-12">
+      <div className="mx-auto max-w-[960px] px-4 py-12">
         {/* パンくずリスト */}
         <nav aria-label="パンくずリスト" className="mb-6">
           <ol className="flex flex-wrap items-center gap-1 text-sm text-muted-foreground">
             <li>
-              <Link href="/" className="hover:text-primary">
+              <Link href="/" className="hover:text-brand-navy dark:hover:text-primary">
                 ホーム
               </Link>
             </li>
@@ -115,7 +115,7 @@ export default async function PostPage({ params }: Props) {
             <li>
               <Link
                 href={getCategoryHref(post.category)}
-                className="hover:text-primary"
+                className="hover:text-brand-navy dark:hover:text-primary"
               >
                 {post.category}
               </Link>
@@ -145,8 +145,8 @@ export default async function PostPage({ params }: Props) {
           </div>
 
           {/* 本文 + デスクトップTOC */}
-          <div className="lg:grid lg:grid-cols-[1fr_220px] lg:gap-8">
-            <div className="prose prose-neutral max-w-none">
+          <div className="lg:grid lg:grid-cols-[minmax(0,720px)_200px] lg:gap-8">
+            <div className="prose dark:prose-invert max-w-none">
               <MDXContent code={post.body} />
             </div>
 

@@ -21,12 +21,12 @@ export default function AboutPage() {
         ]}
       />
 
-      <h1 className="mt-4 text-2xl font-semibold">運営者情報</h1>
+      <h1 className="mt-4 font-heading text-2xl font-semibold">運営者情報</h1>
 
       <div className="mt-8 space-y-10">
         {/* サイトについて */}
         <section>
-          <h2 className="text-xl font-semibold">サイトについて</h2>
+          <h2 className="font-heading text-xl font-semibold">サイトについて</h2>
           <p className="mt-3 leading-relaxed text-foreground/80">
             {SITE_NAME}
             は、40〜50代の方を主な読者として、親の介護・相続・終活・家計に関する公的制度と一般情報をわかりやすく整理するメディアです。
@@ -38,7 +38,7 @@ export default function AboutPage() {
 
         {/* 運営者の立場 */}
         <section>
-          <h2 className="text-xl font-semibold">運営者の立場</h2>
+          <h2 className="font-heading text-xl font-semibold">運営者の立場</h2>
           <p className="mt-3 leading-relaxed text-foreground/80">
             当サイトの運営者は、特定の士業（弁護士・税理士・司法書士など）や金融商品の販売者ではありません。公的資料をもとに情報を整理し、読者の方がご自身の状況に合った選択肢を見つけるための手がかりを提供する「情報整理者」として発信しています。
           </p>
@@ -49,7 +49,7 @@ export default function AboutPage() {
 
         {/* 保有資格 */}
         <section>
-          <h2 className="text-xl font-semibold">保有資格</h2>
+          <h2 className="font-heading text-xl font-semibold">保有資格</h2>
           <p className="mt-3 leading-relaxed text-foreground/80">
             取得次第、こちらに追記いたします。
           </p>
@@ -57,7 +57,7 @@ export default function AboutPage() {
 
         {/* 情報発信の方針 */}
         <section>
-          <h2 className="text-xl font-semibold">情報発信の方針</h2>
+          <h2 className="font-heading text-xl font-semibold">情報発信の方針</h2>
           <p className="mt-3 leading-relaxed text-foreground/80">
             当サイトでは、以下の方針に基づいて情報を発信しています。
           </p>
@@ -82,7 +82,7 @@ export default function AboutPage() {
 
         {/* 出典と情報の正確性 */}
         <section>
-          <h2 className="text-xl font-semibold">出典と情報の正確性</h2>
+          <h2 className="font-heading text-xl font-semibold">出典と情報の正確性</h2>
           <p className="mt-3 leading-relaxed text-foreground/80">
             当サイトの記事では、厚生労働省・国税庁・内閣府・地域包括支援センターなどの公的機関が公表する一次情報を出典としています。各記事の末尾に出典一覧を掲載しています。
           </p>
@@ -90,7 +90,7 @@ export default function AboutPage() {
             制度は改正されることがあります。最新の情報については、各公的機関の公式サイトをご確認ください。記事の内容に誤りを見つけた場合は、
             <Link
               href="/contact"
-              className="text-primary underline underline-offset-4 hover:text-primary/80"
+              className="text-brand-navy dark:text-primary underline underline-offset-4 hover:opacity-80"
             >
               お問い合わせページ
             </Link>

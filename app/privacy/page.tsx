@@ -21,7 +21,7 @@ export default function PrivacyPage() {
         ]}
       />
 
-      <h1 className="mt-4 text-2xl font-semibold">プライバシーポリシー</h1>
+      <h1 className="mt-4 font-heading text-2xl font-semibold">プライバシーポリシー</h1>
 
       <p className="mt-4 text-sm text-muted-foreground">
         施行日: 2026年5月5日
@@ -30,7 +30,7 @@ export default function PrivacyPage() {
       <div className="mt-8 space-y-10">
         {/* 個人情報の取り扱い */}
         <section>
-          <h2 className="text-xl font-semibold">個人情報の取り扱い</h2>
+          <h2 className="font-heading text-xl font-semibold">個人情報の取り扱い</h2>
           <p className="mt-3 leading-relaxed text-foreground/80">
             {SITE_NAME}
             （以下「当サイト」）は、お問い合わせやサービスのご利用を通じて取得する個人情報について、適切な管理と保護に努めます。
@@ -39,7 +39,7 @@ export default function PrivacyPage() {
 
         {/* アクセス解析ツール */}
         <section>
-          <h2 className="text-xl font-semibold">アクセス解析ツール</h2>
+          <h2 className="font-heading text-xl font-semibold">アクセス解析ツール</h2>
           <p className="mt-3 leading-relaxed text-foreground/80">
             当サイトでは、サイトの利用状況を把握するため、以下のアクセス解析ツールを利用しています。
           </p>
@@ -52,7 +52,7 @@ export default function PrivacyPage() {
                 href="https://policies.google.com/privacy"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-primary underline underline-offset-4 hover:text-primary/80"
+                className="text-brand-navy dark:text-primary underline underline-offset-4 hover:opacity-80"
               >
                 Google のプライバシーポリシー
               </a>
@@ -68,7 +68,7 @@ export default function PrivacyPage() {
 
         {/* Cookie の利用 */}
         <section>
-          <h2 className="text-xl font-semibold">Cookie の利用</h2>
+          <h2 className="font-heading text-xl font-semibold">Cookie の利用</h2>
           <p className="mt-3 leading-relaxed text-foreground/80">
             当サイトでは、アクセス解析およびサイトの利便性向上のために Cookie
             を使用しています。ブラウザの設定により Cookie
@@ -78,7 +78,7 @@ export default function PrivacyPage() {
 
         {/* 個人情報の利用目的 */}
         <section>
-          <h2 className="text-xl font-semibold">個人情報の利用目的</h2>
+          <h2 className="font-heading text-xl font-semibold">個人情報の利用目的</h2>
           <p className="mt-3 leading-relaxed text-foreground/80">
             当サイトでは、以下の目的で個人情報を利用することがあります。
           </p>
@@ -91,7 +91,7 @@ export default function PrivacyPage() {
 
         {/* 第三者提供 */}
         <section>
-          <h2 className="text-xl font-semibold">第三者提供</h2>
+          <h2 className="font-heading text-xl font-semibold">第三者提供</h2>
           <p className="mt-3 leading-relaxed text-foreground/80">
             当サイトは、法令に基づく場合を除き、ご本人の同意なく個人情報を第三者に提供することはありません。
           </p>
@@ -99,12 +99,12 @@ export default function PrivacyPage() {
 
         {/* お問い合わせ窓口 */}
         <section>
-          <h2 className="text-xl font-semibold">お問い合わせ窓口</h2>
+          <h2 className="font-heading text-xl font-semibold">お問い合わせ窓口</h2>
           <p className="mt-3 leading-relaxed text-foreground/80">
             個人情報の取り扱いに関するお問い合わせは、
             <Link
               href="/contact"
-              className="text-primary underline underline-offset-4 hover:text-primary/80"
+              className="text-brand-navy dark:text-primary underline underline-offset-4 hover:opacity-80"
             >
               お問い合わせページ
             </Link>
@@ -114,7 +114,7 @@ export default function PrivacyPage() {
 
         {/* ポリシーの変更 */}
         <section>
-          <h2 className="text-xl font-semibold">ポリシーの変更</h2>
+          <h2 className="font-heading text-xl font-semibold">ポリシーの変更</h2>
           <p className="mt-3 leading-relaxed text-foreground/80">
             当サイトは、必要に応じて本プライバシーポリシーの内容を変更することがあります。変更後のポリシーは、当ページに掲載した時点から効力を生じるものとします。
           </p>

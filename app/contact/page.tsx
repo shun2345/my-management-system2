@@ -20,7 +20,7 @@ export default function ContactPage() {
         ]}
       />
 
-      <h1 className="mt-4 text-2xl font-semibold">お問い合わせ</h1>
+      <h1 className="mt-4 font-heading text-2xl font-semibold">お問い合わせ</h1>
 
       <p className="mt-4 leading-relaxed text-foreground/80">
         当サイトに関するご意見・ご質問・記事内容の誤りのご指摘など、お気軽にお問い合わせください。

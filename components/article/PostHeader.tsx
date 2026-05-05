@@ -26,13 +26,13 @@ export function PostHeader({
 }: PostHeaderProps) {
   return (
     <header className="mb-8">
-      <h1 className="text-2xl font-bold leading-[1.4] tracking-wide md:text-[28px]">
+      <h1 className="font-heading text-[28px] font-bold leading-[1.4] tracking-wide md:text-[32px]">
         {title}
       </h1>
 
       {hasAffiliate && (
         <div className="mt-3">
-          <span className="inline-block rounded bg-destructive px-2.5 py-1 text-xs font-bold text-white">
+          <span className="inline-block rounded-sm bg-brand-vermilion px-2.5 py-1 text-xs font-bold text-white">
             PR
           </span>
         </div>

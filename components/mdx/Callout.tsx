@@ -1,4 +1,4 @@
-import { AlertTriangle, Info, Lightbulb, StickyNote } from 'lucide-react';
+import { AlertTriangle, CheckCircle, Info, PenLine } from 'lucide-react';
 
 type CalloutType = 'info' | 'warning' | 'tip' | 'note';
 
@@ -7,11 +7,23 @@ type CalloutProps = {
   children: React.ReactNode;
 };
 
-const styles: Record<CalloutType, string> = {
-  info: 'border-primary/50 bg-primary/5 text-primary',
-  warning: 'border-destructive/50 bg-destructive/5 text-destructive',
-  tip: 'border-accent-foreground/50 bg-accent text-accent-foreground',
-  note: 'border-muted-foreground/30 bg-muted text-muted-foreground',
+const styles: Record<CalloutType, { container: string; icon: string }> = {
+  info: {
+    container: 'border-l-semantic-info bg-semantic-info/8 dark:bg-semantic-info/15',
+    icon: 'text-semantic-info',
+  },
+  warning: {
+    container: 'border-l-semantic-warning bg-semantic-warning/10 dark:bg-semantic-warning/15',
+    icon: 'text-semantic-warning',
+  },
+  tip: {
+    container: 'border-l-semantic-success bg-semantic-success/8 dark:bg-semantic-success/15',
+    icon: 'text-semantic-success',
+  },
+  note: {
+    container: 'border-l-brand-navy/40 bg-brand-mist/40 dark:border-l-primary/40 dark:bg-muted/50',
+    icon: 'text-brand-navy dark:text-primary',
+  },
 };
 
 const labels: Record<CalloutType, string> = {
@@ -24,8 +36,8 @@ const labels: Record<CalloutType, string> = {
 const icons: Record<CalloutType, React.ReactNode> = {
   info: <Info className="size-5 shrink-0" aria-hidden="true" />,
   warning: <AlertTriangle className="size-5 shrink-0" aria-hidden="true" />,
-  tip: <Lightbulb className="size-5 shrink-0" aria-hidden="true" />,
-  note: <StickyNote className="size-5 shrink-0" aria-hidden="true" />,
+  tip: <CheckCircle className="size-5 shrink-0" aria-hidden="true" />,
+  note: <PenLine className="size-5 shrink-0" aria-hidden="true" />,
 };
 
 export function Callout({ type = 'info', children }: CalloutProps) {
@@ -33,10 +45,10 @@ export function Callout({ type = 'info', children }: CalloutProps) {
     <div
       role="note"
       aria-label={labels[type]}
-      className={`my-4 flex gap-3 rounded-lg border-l-4 p-4 ${styles[type]}`}
+      className={`my-4 flex gap-3 rounded-r-md border-l-4 p-4 ${styles[type].container}`}
     >
-      {icons[type]}
-      <div className="min-w-0">{children}</div>
+      <div className={styles[type].icon}>{icons[type]}</div>
+      <div className="min-w-0 text-foreground">{children}</div>
     </div>
   );
 }
