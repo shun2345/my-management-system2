@@ -267,6 +267,53 @@ author: <<<運営者の表示名>>>
 
 カテゴリに応じて適切な専門家への相談を促すブロックを表示する。`category` は kaigo / souzoku / shukatsu / okane の4種。
 
+### 4.7 KeyPoints - 要点ボックス
+
+```mdx
+<KeyPoints>
+- 介護保険は40歳以上が加入対象
+- 要介護認定の申請先は市区町村の窓口
+- 認定結果が出るまで原則30日
+</KeyPoints>
+
+<KeyPoints title="まとめ">
+- ポイント1
+- ポイント2
+</KeyPoints>
+```
+
+記事冒頭の「結論先出し」や末尾の「まとめ」で使用する。`title` を省略すると「この記事のポイント」が表示される。children には Markdown リスト（ul/li）を渡す。
+
+### 4.8 Figure - 図版表示
+
+```mdx
+<Figure
+  src="/images/kaigo-flow.svg"
+  alt="介護保険申請の流れを示すフロー図"
+  caption="介護保険の申請から認定までの流れ"
+  source="厚生労働省「介護保険制度の概要」を元に作成"
+/>
+```
+
+画像・SVG図にキャプションと出典を統一フォーマットで表示する。`caption` と `source` は任意。`width` / `height` も指定可能。
+
+### 4.9 Example - 具体例ボックス
+
+```mdx
+<Example>
+Aさん（52歳）の父親（78歳）が要介護2の認定を受けた場合、
+介護保険の自己負担割合は原則1割となります。
+
+<Citation source="厚生労働省「介護保険制度の概要」" url="https://www.mhlw.go.jp/..." accessedAt="2026-01-15" />
+</Example>
+
+<Example title="相続税の計算例">
+具体的な計算例をここに記述
+</Example>
+```
+
+仮想のケースで制度を具体的に説明するボックス。`title` を省略すると「具体例」が表示される。children 内で `<Citation>` 等の他コンポーネントも使用可能。
+
 ---
 
 ## 5. アフィリエイトリンクの管理
