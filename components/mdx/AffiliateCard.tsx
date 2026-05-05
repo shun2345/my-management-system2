@@ -1,32 +1,21 @@
 'use client';
 
-import { AFFILIATE_LINKS } from '@/lib/affiliate';
+import {
+  AFFILIATE_LINKS,
+  trackAffiliateClick,
+  type AffiliateLinkId,
+  type AffiliatePosition,
+} from '@/lib/affiliate';
+import { useArticleContext } from '@/components/providers/ArticleContext';
 
 type AffiliateCardProps = {
-  linkId: string;
+  linkId: AffiliateLinkId;
+  position?: AffiliatePosition;
 };
 
-function trackClick(linkId: string, label: string, asp: string, category: string) {
-  if (typeof window !== 'undefined' && 'gtag' in window) {
-    (window as unknown as { gtag: (...args: unknown[]) => void }).gtag('event', 'affiliate_click', {
-      link_id: linkId,
-      label,
-      asp,
-      category,
-    });
-  }
-
-  if (typeof window !== 'undefined') {
-    window.dispatchEvent(
-      new CustomEvent('affiliate_click', {
-        detail: { link_id: linkId, label, asp, category },
-      })
-    );
-  }
-}
-
-export function AffiliateCard({ linkId }: AffiliateCardProps) {
-  const link = AFFILIATE_LINKS[linkId as keyof typeof AFFILIATE_LINKS];
+export function AffiliateCard({ linkId, position = 'middle' }: AffiliateCardProps) {
+  const articleContext = useArticleContext();
+  const link = AFFILIATE_LINKS[linkId];
 
   if (!link) {
     if (process.env.NODE_ENV === 'development') {
@@ -34,6 +23,19 @@ export function AffiliateCard({ linkId }: AffiliateCardProps) {
     }
     return null;
   }
+
+  const handleClick = () => {
+    trackAffiliateClick({
+      linkId,
+      label: link.label,
+      asp: link.asp,
+      category: link.category,
+      pageUrl: typeof window !== 'undefined' ? window.location.href : '',
+      referrer: typeof window !== 'undefined' ? document.referrer : '',
+      articleCategory: articleContext?.category ?? 'unknown',
+      position,
+    });
+  };
 
   return (
     <div className="my-6 rounded-lg border border-brand-mist dark:border-border shadow-sm overflow-hidden">
@@ -51,14 +53,14 @@ export function AffiliateCard({ linkId }: AffiliateCardProps) {
             {link.label}
           </p>
           <p className="mt-1 text-sm text-muted-foreground">
-            {link.rewardType}
+            {link.description}
           </p>
           <a
             href={link.url}
             target="_blank"
             rel="noopener noreferrer sponsored"
             className="mt-3 inline-block rounded-md bg-brand-navy text-brand-cream dark:bg-primary dark:text-primary-foreground px-4 py-2 text-sm font-medium transition-opacity hover:opacity-90"
-            onClick={() => trackClick(linkId, link.label, link.asp, link.category)}
+            onClick={handleClick}
           >
             詳しく見る
           </a>
